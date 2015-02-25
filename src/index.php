@@ -3,8 +3,8 @@
 session_start();
 
 // Simple router
-$controller = ucfirst('index'); //ucfirst($_GET['c']);
-$action = 'index'; //$_GET['a'];
+$controller = ucfirst($_GET['c']);
+$action = $_GET['a'];
 
 if(!isset($_SESSION['user'])) {
     $controller = 'Login';
