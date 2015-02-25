@@ -12,20 +12,22 @@ class LoginController extends Controller {
     }
 
     public function login() {
-        $email = trim($_POST['email']);
-        $password = trim($_POST['password']);
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
         if($email == NULL || $password == NULL)
-            header('Location: /?c=login&a=index&error=1');
+            header('Location: /src/?c=login&a=index&error=1');
 
-        $user = User.get(array(
-                'email' => $email,
-                'password' => $password
-            ));
+        $user = User::get(array(
+            'email' => $email,
+            'password' => $password
+        ));
 
-        if($user) {
+        if($user != NULL) {
             $_SESSION['user'] = $user;
-            header('Location: /');
+            header('Location: /src/?c=index&a=index');
+        } else {
+            header('Location: /src/?c=login&a=index&error=1');
         }
     }
 }

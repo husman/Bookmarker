@@ -1,3 +1,3 @@
 <?php
 
-echo "somestuff --- ". $somestuff;
+echo "somestuff --- ";

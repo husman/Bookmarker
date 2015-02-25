@@ -27,24 +27,16 @@ class Database {
 
             return self::$db_handle;
         } catch(PDOException $exception) {
-            self::$logger->addError($exception->getMessage(), $exception->getTrace());
+            echo $exception->getMessage();
+            exit;
         }
     }
-
-    private static function initializeLogger() {
-        self::$logger = new Monolog\Logger('database');
-        self::$logger->pushHandler(new Monolog\Handler\StreamHandler('logs/database', Monolog\Logger::ERROR));
-    }
-
 
     // Database connection handle and resources
     private static $db_handle;
 
-    // Logging
-    private static $logger;
-
     // Connection parameters
-    private static $databse_host = 'localhost';
+    private static $databse_host = '66.65.155.213';
     private static $databse_name = 'bookmarker';
     private static $databse_user = 'root';
     private static $databse_password = 'orc123';
