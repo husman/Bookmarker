@@ -1,7 +1,5 @@
 <?php
 
-require '../vendor/autoload.php';
-
 class Database {
 
     public static function getHandle() {
@@ -36,8 +34,8 @@ class Database {
     private static $db_handle;
 
     // Connection parameters
-    private static $databse_host = '66.65.155.213';
+    private static $databse_host = 'localhost';
     private static $databse_name = 'bookmarker';
     private static $databse_user = 'root';
-    private static $databse_password = 'orc123';
+    private static $databse_password = 'root';
 }

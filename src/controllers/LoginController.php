@@ -24,10 +24,17 @@ class LoginController extends Controller {
         ));
 
         if($user != NULL) {
-            $_SESSION['user'] = $user;
+            $_SESSION['user_id'] = $user->id;
             header('Location: /src/?c=index&a=index');
-        } else {
-            header('Location: /src/?c=login&a=index&error=1');
+            exit;
         }
+
+        header('Location: /src/?c=login&a=index&error=1');
+    }
+
+    public function logout() {
+        session_destroy();
+        header('Location: /');
+        exit;
     }
 }

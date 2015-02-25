@@ -16,8 +16,6 @@ class IntegrationTestCase extends PHPUnit_Framework_TestCase {
     private function cleanDatabase() {
         foreach(User::get() as $user)
             $user->delete();
-        foreach(Bookmark::get() as $bookmark)
-            $bookmark->delete();
     }
 
     protected $test_factory;

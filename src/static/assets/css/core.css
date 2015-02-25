@@ -1,0 +1,27 @@
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.clear {
+    clear:both;
+}
+.hidden {
+    /*display: none;;*/
+}
+.new-bookmark {
+    margin-top: 7px;
+}
+.new-bookmark input {
+    height: 33px;
+    border-radius: 3px;
+    padding: 2px 10px;
+    width: 200px;
+}
+#bookmark-list {
+    margin-top: 100px;
+}
+#bookmark-list thead td {
+    font-weight: bold;
+}

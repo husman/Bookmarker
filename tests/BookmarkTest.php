@@ -1,6 +1,6 @@
 <?php
 
-include "IntegrationTestCase.php";
+include_once "helpers/IntegrationTestCase.php";
 
 
 class BookmarkTest extends IntegrationTestCase {
@@ -12,6 +12,7 @@ class BookmarkTest extends IntegrationTestCase {
         $user_info = array(
             'firstname' => 'bob',
             'lastname' => 'example',
+            'password' => '321',
             'email' => 'bob@example.com'
         );
         $user = $this->test_factory->createUser($user_info);
@@ -28,6 +29,7 @@ class BookmarkTest extends IntegrationTestCase {
         $user_info = array(
             'firstname' => 'bob',
             'lastname' => 'example',
+            'password' => '123',
             'email' => 'bob@example.com'
         );
         $user = $this->test_factory->createUser($user_info);

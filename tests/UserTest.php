@@ -1,6 +1,6 @@
 <?php
 
-include "IntegrationTestCase.php";
+include_once "helpers/IntegrationTestCase.php";
 
 
 class UserTest extends IntegrationTestCase {
@@ -8,6 +8,7 @@ class UserTest extends IntegrationTestCase {
         $new_user = new User(array(
             'firstname' => 'bob',
             'lastname' => 'example',
+            'password' => '123',
             'email' => 'bob@example.com'
         ));
         $new_user->save();
@@ -24,6 +25,8 @@ class UserTest extends IntegrationTestCase {
         $user_info = array(
             'firstname' => 'fred',
             'lastname' => 'example',
+            'password' => 'example',
+            'email' => 'example@example.com',
         );
         $user = $this->test_factory->createUser($user_info);
         $user_id = $user->id;
@@ -38,6 +41,7 @@ class UserTest extends IntegrationTestCase {
         $user_info = array(
             'firstname' => 'ted',
             'lastname' => 'example',
+            'password' => '321',
             'email' => 'ted@example.com',
         );
         $user = $this->test_factory->createUser($user_info);
@@ -71,11 +75,13 @@ class UserTest extends IntegrationTestCase {
         $user_info_1 = array(
             'firstname' => 'User A',
             'lastname' => 'User AL',
+            'password' => '111',
             'email' => 'userA@example.com'
         );
         $user_info_2 = array(
             'firstname' => 'User B',
             'lastname' => 'User BL',
+            'password' => '222',
             'email' => 'userB@example.com'
         );
         $user1 = $this->test_factory->createUser($user_info_1);
@@ -93,6 +99,7 @@ class UserTest extends IntegrationTestCase {
         $user_info = array(
             'firstname' => 'bob',
             'lastname' => 'example',
+            'password' => '333',
             'email' => 'bob@example.com'
         );
         $user = $this->test_factory->createUser($user_info);
@@ -111,6 +118,7 @@ class UserTest extends IntegrationTestCase {
         $user_info = array(
             'firstname' => 'ted',
             'lastname' => 'example',
+            'password' => '444',
             'email' => 'ted@example.com'
         );
         $user = $this->test_factory->createUser($user_info);

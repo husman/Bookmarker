@@ -8,6 +8,7 @@ class Bookmark {
     public $title;
     public $url;
     public $user;
+    public $created_date;
 
     function __construct($argments=NULL) {
         if($argments != NULL)
@@ -28,15 +29,16 @@ class Bookmark {
             B.id,
             B.title,
             B.url,
+            B.created_date,
             U.id as __user__id,
             U.firstname as __user__firstname,
             U.lastname as __user__lastname,
             U.email as __user__email,
             U.password as __user__password
-            FROM bookmarks B JOIN users U ON B.user_id = U.id";
+            FROM bookmarks B JOIN users U ON B.user_id = U.id ";
 
         if($arguments == NULL) {
-            $statement = $db->prepare($base_sql);
+            $statement = $db->prepare($base_sql . " WHERE U.id = ". $arguments['user']->id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Bookmark');
             return $statement->fetchAll();
@@ -51,19 +53,21 @@ class Bookmark {
             return $statement->fetch();
         }
 
-        $sql = $base_sql . " WHERE 1 ";
+        $sql = $base_sql . " WHERE U.id = ". $arguments['user']->id;
         $where_clause = [];
         foreach($arguments as $column => $value) {
-            $where_clause[] = "AND B.{$column} = :{$column}";
+            if($column != 'user') {
+                $where_clause[] = " AND B.{$column} = :{$column} ";
+                $arguments[ ':' . $column ] = $value;
+            }
             unset($arguments[$column]);
-            $arguments[':'. $column] = $value;
         }
         $sql .= implode(' ', $where_clause);
 
         $statement = $db->prepare($sql);
         $statement->execute($arguments);
         $statement->setFetchMode(PDO::FETCH_CLASS, 'Bookmark');
-        return $statement->fetch();
+        return $statement->fetchAll();
     }
 
     public function save() {
@@ -81,7 +85,9 @@ class Bookmark {
             ':user_id' => $this->user->id,
         ));
 
-        $this->id = $this->db->lastInsertId();
+        $new_bookmark = $this->get($this->db->lastInsertId());
+        $this->id = $new_bookmark->id;
+        $this->created_date = $new_bookmark->created_date;
     }
 
     public function delete() {
