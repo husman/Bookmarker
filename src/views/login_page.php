@@ -7,7 +7,9 @@
 </head>
 <body>
 <div class="container">
-
+    <?php if($error) { ?>
+    <div class="error">You have entered an incorrect username or password.</div>
+    <?php } ?>
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="email" class="sr-only">Email address</label>
