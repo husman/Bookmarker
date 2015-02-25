@@ -5,7 +5,7 @@ class Controller {
         extract($data);
 
         ob_start();
-        include 'views/bookmark_list.php';
+        include 'views/'.$view.'.php';
         echo ob_get_clean();
     }
 }
