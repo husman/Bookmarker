@@ -15,8 +15,17 @@ class LoginController extends Controller {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        if($email == NULL || $password == NULL) {
-            header( 'Location: /?c=login&a=index&error=1' );
+        if($email == NULL || $password == NULL)
+            header('Location: /?c=login&a=index&error=1');
+
+        $user = User.get(array(
+                'email' => $email,
+                'password' => $password
+            ));
+
+        if($user) {
+            $_SESSION['user'] = $user;
+            header('Location: /');
         }
     }
 }
